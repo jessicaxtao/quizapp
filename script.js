@@ -23,7 +23,7 @@ function setNextQuestion() {
     next.classList.add('hide');
     buttonGrid.removeChild(next);
   }
-  inputBox.innerText = "";
+  inputBox.value= "";
   showQuestion(shuffledQuestions[index]);
 }
 
@@ -50,6 +50,8 @@ function selectAnswer() {
     setNextQuestion();
   } else {
     alert("NUMBER CORRECT: " + correct);
+    next.classList.add('hide');
+    buttonGrid.removeChild(next);
     questionContainerElement.classList.add('hide');
     startButton.classList.remove('hide');
   }
