@@ -2,6 +2,11 @@ const startButton = document.getElementById('start-btn');
 const questionContainerElement = document.getElementById('question-container');
 const buttonGrid = document.getElementById('btn-grid');
 const inputBox = document.getElementById('input');
+const introText = document.getElementById('intro-text');
+const introText2 = document.getElementById('intro-text-2');
+const introLink = document.getElementById('intro-link');
+const numCorrect = document.getElementById('numCorrect');
+const correctAnswer = document.getElementById('correctAnswer');
 
 let shuffledQuestions, index, next, correct;
 const questionElement = document.getElementById('question');
@@ -10,11 +15,15 @@ startButton.addEventListener('click', startGame);
 
 function startGame() {
   startButton.classList.add('hide');
+  introText.classList.add('hide');
+  introText2.classList.add('hide');
+  introLink.classList.add('hide');
   questionContainerElement.classList.remove('hide');
   shuffledQuestions = questions.sort(() => Math.random() - .5);
   index = 0;
   correct = 0;
-  alert(shuffledQuestions.length);
+  numCorrect.classList.remove('hide');
+  correctAnswer.classList.remove('hide');
   setNextQuestion();
 }
 
@@ -41,20 +50,28 @@ function showQuestion(question) {
 function selectAnswer() {
   event.preventDefault();
   const answer = document.querySelector('#input').value;
-  if(questions[index].answers.includes(answer)) {
+  let ans = answer.toUpperCase();
+  if(questions[index].answers.includes(ans)) {
     correct++;
+    correctAnswer.innerHTML = "CORRECT!"
   } else {
-    alert("The correct answer was: " + questions[index].answers[0]);
+    correctAnswer.innerHTML = "The correct answer was: " + questions[index].answers[0];
   }
+  numCorrect.innerHTML = "Number Correct: " + correct + " / 299";
   if(shuffledQuestions.length > index + 1) {
     index++;
     setNextQuestion();
   } else {
-    alert("NUMBER CORRECT: " + correct);
+    alert("TOTAL NUMBER CORRECT: " + correct);
     next.classList.add('hide');
     buttonGrid.removeChild(next);
     questionContainerElement.classList.add('hide');
     startButton.classList.remove('hide');
+    introText.classList.remove('hide');
+    introText2.classList.remove('hide');
+    introLink.classList.remove('hide');
+    numCorrect.classList.add('hide');
+    correctAnswer.classList.add('hide');
   }
 }
 
@@ -188,6 +205,10 @@ const questions = [
     answers: ['OSTRICH', 'OSTRICHES']
   },
   {
+    question: 'WHAT IS THE NAME OF THE ISLAND-CITY BELIEVED SINCE ANTIQUITY TO HAVE SUNK INTO THE OCEAN?',
+    answers: ['ATLANTIS']
+  },
+  {
     question: 'WHAT IS THE NAME OF THE LIZARD THAT CHANGES ITS COLOR TO MATCH THE SURROUNDINGS?',
     answers: ['CHAMELEON', 'CHAMELEONS']
   },
@@ -245,7 +266,7 @@ const questions = [
   },
   {
     question: 'WHAT IS THE NAME OF THE CHAPEL WHOSE CEILING WAS PAINTED BY MICHELANGELO?',
-    answers: ['SISTINE', 'SISTINE CHAPEL']
+    answers: ['SISTINE']
   },
   {
     question: 'OF WHICH COUNTRY IS BAGHDAD THE CAPITAL?',
@@ -589,7 +610,7 @@ const questions = [
   },
   {
     question: 'WHAT IS THE LAST NAME OF THE AUTHOR WHO WROTE “OLIVER TWIST”?',
-    answers: ['DICKENS']
+    answers: ['DICKENS', 'DICKINS']
   },
   {
     question: 'WHAT IS THE CAPITAL OF DELAWARE?',
