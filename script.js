@@ -8,7 +8,7 @@ const introLink = document.getElementById('intro-link');
 const numCorrect = document.getElementById('numCorrect');
 const correctAnswer = document.getElementById('correctAnswer');
 
-let shuffledQuestions, index, next, correct;
+let shuffledQuestions, index, next, correct, total;
 const questionElement = document.getElementById('question');
 
 startButton.addEventListener('click', startGame);
@@ -22,6 +22,7 @@ function startGame() {
   shuffledQuestions = questions.sort(() => Math.random() - .5);
   index = 0;
   correct = 0;
+  total = 0;
   numCorrect.classList.remove('hide');
   correctAnswer.classList.remove('hide');
   setNextQuestion();
@@ -57,7 +58,8 @@ function selectAnswer() {
   } else {
     correctAnswer.innerHTML = "The correct answer was: " + questions[index].answers[0];
   }
-  numCorrect.innerHTML = "Number Correct: " + correct + " / 299";
+  total++;
+  numCorrect.innerHTML = "Number Correct: " + correct + " / " + total;
   if(shuffledQuestions.length > index + 1) {
     index++;
     setNextQuestion();
@@ -174,7 +176,7 @@ const questions = [
   },
   {
     question: 'WHAT IS THE NAME OF THE SHORT PLEATED SKIRT WORN BY MEN IN SCOTLAND?',
-    answers: ['KILT']
+    answers: ['KILT', 'KILTS']
   },
   {
     question: 'WHAT IS THE NAME OF AN INABILITY TO SLEEP?',
@@ -242,7 +244,7 @@ const questions = [
   },
   {
     question: 'WHAT IS THE NAME OF A DRIED PLUM?',
-    answers: ['PRUNE']
+    answers: ['PRUNE', 'PRUNES']
   },
   {
     question: 'IN WHICH SPORT DOES A RIDER ON HORSEBACK HIT A BALL WITH HIS MALLET?',
@@ -310,7 +312,7 @@ const questions = [
   },
   {
     question: 'WHAT IS THE NAME OF THE LARGE HAIRY SPIDER THAT LIVES NEAR BANANAS?',
-    answers: ['TARANTULA']
+    answers: ['TARANTULA', 'TARANTULAS']
   },
   {
     question: 'WHAT IS THE NAME OF THE OCEAN THAT IS LOCATED BETWEEN AFRICA AND AUSTRALIA?',
@@ -338,7 +340,7 @@ const questions = [
   },
   {
     question: 'WHICH TYPE OF SNAKE DO ASIAN SNAKE-CHARMERS USE?',
-    answers: ['COBRA']
+    answers: ['COBRA', 'COBRAS']
   },
   {
     question: 'WHAT IS THE ONLY LIQUID METAL AT ROOM TEMPERATURE?',
@@ -346,7 +348,7 @@ const questions = [
   },
   {
     question: 'WHAT IS THE NAME OF THE DESERT PEOPLE WHO WANDER INSTEAD OF LIVING IN ONE PLACE?',
-    answers: ['NOMADS']
+    answers: ['NOMADS', 'NOMAD']
   },
   {
     question: 'WHAT IS THE CAPITAL OF NEW YORK?',
@@ -358,11 +360,11 @@ const questions = [
   },
   {
     question: 'WHAT IS THE NAME OF THE COLLAR BONE?',
-    answers: ['CLAVICLE']
+    answers: ['CLAVICLE', 'CLAVICLES']
   },
   {
     question: 'WHAT IS THE NAME OF THE EXTINCT REPTILES KNOWN AS “TERRIBLE LIZARDS”?',
-    answers: ['DINOSAUR']
+    answers: ['DINOSAUR', 'DINOSAURS']
   },
   {
     question: 'WHAT IS THE CAPITAL OF RUSSIA?',
@@ -578,7 +580,7 @@ const questions = [
   },
   {
     question: 'WHAT ARE PEOPLE CALLED WHO EXPLORE CAVES?',
-    answers: ['SPELUNKERS']
+    answers: ['SPELUNKERS', 'SPELUNKER']
   },
   {
     question: 'WHAT IS THE NAME OF THE CAPTAIN OF THE PEQUOD IN THE BOOK “MOBY DICK”?',
@@ -598,7 +600,7 @@ const questions = [
   },
   {
     question: 'THE DEEPEST PART OF THE OCEAN IS LOCATED AT WHICH TRENCH?',
-    answers: ['MARIANA']
+    answers: ['MARIANA', 'MARIANAS']
   },
   {
     question: 'WHICH SPORT USES THE TERMS “STONES” AND “BROOMS”?',
@@ -778,7 +780,7 @@ const questions = [
   },
   {
     question: 'FOR WHICH COUNTRY IS THE DRACHMA THE MONETARY UNIT?',
-    answers: ['GREECE']
+    answers: ['GREECE', 'GREEK']
   },
   {
     question: 'WHAT IS THE NAME OF THE MANSION IN VIRGINIA THAT WAS THOMAS JEFFERSON’S HOME?',
