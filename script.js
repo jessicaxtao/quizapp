@@ -7,8 +7,9 @@ const introText2 = document.getElementById('intro-text-2');
 const introLink = document.getElementById('intro-link');
 const numCorrect = document.getElementById('numCorrect');
 const correctAnswer = document.getElementById('correctAnswer');
+const ending = document.getElementById('end');
 
-let shuffledQuestions, index, next, correct, total;
+let shuffledQuestions, index, next, correct, total, endText;
 const questionElement = document.getElementById('question');
 
 startButton.addEventListener('click', startGame);
@@ -64,17 +65,32 @@ function selectAnswer() {
     index++;
     setNextQuestion();
   } else {
-    alert("TOTAL NUMBER CORRECT: " + correct);
-    next.classList.add('hide');
-    buttonGrid.removeChild(next);
-    questionContainerElement.classList.add('hide');
-    startButton.classList.remove('hide');
-    introText.classList.remove('hide');
-    introText2.classList.remove('hide');
-    introLink.classList.remove('hide');
-    numCorrect.classList.add('hide');
-    correctAnswer.classList.add('hide');
+    if(correct > 250) {
+      endText = "Amazing!";
+    } else if (correct > 200) {
+      endText = "Wow.";
+    } else if (correct > 150) {
+      endText = "Not bad.";
+    } else if (correct > 100) {
+      endText = "Try harder next time";
+    } else {
+      endText = "...oof";
+    }
+    reset();
   }
+}
+
+function reset() {
+  next.classList.add('hide');
+  buttonGrid.removeChild(next);
+  questionContainerElement.classList.add('hide');
+  startButton.classList.remove('hide');
+  introLink.classList.remove('hide');
+  numCorrect.classList.add('hide');
+  correctAnswer.classList.add('hide');
+  ending.innerHTML = "TOTAL NUMBER CORRECT: " + correct + "<br><br>" + endText;
+  startButton.innerText = "Restart";
+  ending.classList.remove('hide');
 }
 
 const questions = [
